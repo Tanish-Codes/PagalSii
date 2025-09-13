@@ -134,39 +134,42 @@
     }
 
     #fox-container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -30%);
-      text-align: center;
-      color: #fff;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 1s ease;
-      user-select: none;
-      z-index: 15;
-      padding: 20px;
-    }
-
+  position: absolute;
+  top: 45%;  /* slightly higher so it's visible */
+  left: 50%;
+  transform: translate(-50%, -40%);
+  text-align: center;
+  color: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+  user-select: none;
+  z-index: 15;
+  padding: 15px;
+  max-width: 90vw; /* don’t overflow */
+}
     #fox-container.show {
       opacity: 1;
       pointer-events: auto;
     }
 
     #fox-container img {
-      width: 160px;
-      max-width: 60vw;
-      filter: drop-shadow(0 0 10px rgba(255, 111, 145, 0.9));
-      border-radius: 20px;
-      margin-bottom: 15px;
-    }
+  width: 160px;
+  max-width: 70vw; /* shrink nicely */
+  height: auto;
+  filter: drop-shadow(0 0 10px rgba(255, 111, 145, 0.9));
+  border-radius: 20px;
+  margin-bottom: 15px;
+}
 
-    #fox-message {
-      font-size: 1.5rem;
-      font-family: 'Pacifico', cursive;
-      max-width: 320px;
-      text-shadow: 0 0 10px #ff6f91;
-    }
+   #fox-message {
+  font-size: 1.5rem;
+  font-family: 'Pacifico', cursive;
+  max-width: 85vw;
+  text-shadow: 0 0 10px #ff6f91;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
 
     #hearts-container {
       position: absolute;
@@ -179,36 +182,45 @@
       z-index: 5;
     }
 
-    .heart {
-      position: absolute;
-      font-size: 24px;
-      opacity: 0.9;
-      animation-name: floatUp;
-      animation-timing-function: ease-out;
-      animation-fill-mode: forwards;
-      
-      user-select: none;
-    }
+  .heart {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0.9;
+  animation-name: floatUp;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  user-select: none;
+  left: 50%;
+  transform: translateX(-50%); /* keep centered */
+}
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-300px) scale(1.5);
-        opacity: 0;
-      }
-    }
+  @keyframes floatUp {
+  0% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -80vh) scale(1.5); /* rise much higher */
+    opacity: 0;
+  }
+}
 
-    @media (max-width: 500px) {
-      #message {
-        font-size: 2.5rem;
-      }
-      #fox-message {
-        font-size: 1.2rem;
-      }
+/* Mobile optimization */
+@media (max-width: 500px) {
+  .heart {
+    font-size: 18px; /* smaller for narrow screens */
+  }
+  @keyframes floatUp {
+    0% {
+      transform: translate(-50%, 0) scale(1);
+      opacity: 1;
     }
+    100% {
+      transform: translate(-50%, -100vh) scale(1.5); /* go all the way up */
+      opacity: 0;
+    }
+  }
+}
   </style>
 </head>
 <body>
